@@ -1,0 +1,8 @@
+A. Choice of System for Scheduling Periodic Tasks
+
+For scheduling periodic tasks such as downloading a list of ISINs every 24 hours, I would choose Celery with Redis as the preferred system. Celery is a robust task queue that enables asynchronous execution of tasks in the background. It is widely used in production environments due to its reliability, scalability, and ability to integrate seamlessly with Django and Flask applications. The reason for choosing Celery is that it supports distributed task execution, allowing multiple workers to handle jobs concurrently. This makes it an excellent choice for periodic tasks where execution timing and task tracking are important.
+
+Celery becomes even more effective when combined with Celery Beat, which allows tasks to be scheduled at fixed intervals, similar to cron jobs. This ensures that tasks such as fetching and processing ISINs run automatically without manual intervention. While cron jobs could be a simpler alternative, they lack built-in monitoring, error handling, and logging capabilities, making it difficult to track failed tasks. Another alternative is Django Q, which is simpler but not as flexible and scalable as Celery.
+
+To enhance Celery's performance in a production environment, I would recommend using RabbitMQ instead of Redis as a message broker, since RabbitMQ provides better persistence and reliability for handling large-scale workloads. Additionally, running multiple Celery worker nodes across different servers can improve scalability. For monitoring, Flower, a Celery monitoring tool, can be used to track task execution and failures. These optimizations help ensure that periodic tasks remain reliable and scalable as the system grows.
+
