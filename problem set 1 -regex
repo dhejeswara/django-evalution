@@ -1,0 +1,10 @@
+import re
+
+text = '{"orders":[{"id":1},{"id":2},{"id":3},{"id":4},{"id":5},{"id":6},{"id":7},{"id":8},{"id":9},{"id":70},{"id":71},{"id":648},{"id":649},{"id":650},{"id":651},{"id":652},{"id":653}],"errors":[{"code":3,"message":"[PHP Warning #2] count(): Parameter must be an array or an object that implements Countable (153)"}]}'
+
+pattern = r'\b(1|2|3|4|5|6|7|8|9|70|71|648|649|650|651|652|653)\b'
+matches = re.findall(pattern, text)
+
+numbers = list(map(int, matches)
+
+print(numbers)
